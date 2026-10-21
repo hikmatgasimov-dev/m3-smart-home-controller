@@ -1,4 +1,5 @@
 package com.bootcamp.smarthome;
+import com.bootcamp.smarthome.exception.HomeAutomationException;
 
 import com.bootcamp.smarthome.controller.HomeController;
 import com.bootcamp.smarthome.device.Device;
@@ -14,7 +15,7 @@ import com.bootcamp.smarthome.device.SmartThermostat;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws HomeAutomationException {
 
         HomeController controller = new HomeController();
 
