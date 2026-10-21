@@ -82,7 +82,9 @@ public class HomeController {
             }
 
             if (!device.isOnline()) {
-                System.out.println("WARNING: Device '" + deviceId + "' is offline — command skipped.");
+
+                logger.warn("Device '{}' is offline, command '{}' skipped", deviceId, fullCommand);
+
                 return;
             }
             device.executeCommand(command);
