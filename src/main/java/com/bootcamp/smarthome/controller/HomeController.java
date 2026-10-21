@@ -86,14 +86,11 @@ public class HomeController {
             }
             device.executeCommand(command);
         } catch (HomeAutomationException e) {
-            throw new HomeAutomationException("Command '"+fullCommand+"' failed  for device '"+deviceId+"'",e);
+            throw new HomeAutomationException("Command '" + fullCommand + "' failed for device '" + deviceId + "'", e);
         }
         finally {
             System.out.println("Command processing ended for device "+deviceId);
         }
-
-
-
 
     }
 
