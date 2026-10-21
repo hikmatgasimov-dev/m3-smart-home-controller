@@ -4,6 +4,7 @@ import com.bootcamp.smarthome.device.Device;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.bootcamp.smarthome.exception.DeviceNotFoundException;
+import com.bootcamp.smarthome.exception.DeviceOfflineException;
 /**
  * Central hub that manages all registered smart devices.
  *
@@ -85,7 +86,7 @@ public class HomeController {
 
                 logger.warn("Device '{}' is offline, command '{}' skipped", deviceId, fullCommand);
 
-                return;
+                throw new DeviceOfflineException(deviceId);
             }
             device.executeCommand(command);
             logger.info("Command executed successfully: deviceId={}, command='{}'", deviceId, fullCommand);
