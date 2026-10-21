@@ -33,8 +33,7 @@ public class SmartLock extends Device {
             isLocked = false;
             System.out.println(getName() + " unlocked successfully.");
         } else {
-            logger.error("(SECURITY ALERT: Failed unlock attempt for {} (incorrect or missing PIN)",getName());
-            System.out.println("SECURITY ALERT: Incorrect PIN entered for " + getName() + ".");
+            logger.error("SECURITY ALERT: Failed unlock attempt for {} (incorrect or missing PIN)",getName());
             throw new InvalidCommandException("Incorrect PIN for " + getName());
         }
     }
