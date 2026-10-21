@@ -8,7 +8,7 @@ import com.bootcamp.smarthome.device.SmartLock;
 import com.bootcamp.smarthome.device.SmartThermostat;
 import com.bootcamp.smarthome.exception.InvalidCommandException;
 import com.bootcamp.smarthome.exception.InvalidValueException;
-
+import com.bootcamp.smarthome.exception.DeviceNotFoundException;
 /**
  * Entry point for the Smart Home Controller demo.
  *
@@ -91,6 +91,9 @@ public class Main {
             if (e.getCause() != null) {
                 System.out.println("Cause: " + e.getCause().getMessage());
             }
+        }
+        catch (DeviceNotFoundException e){
+            System.out.println("Error: " + e.getMessage());
         }
     }
 

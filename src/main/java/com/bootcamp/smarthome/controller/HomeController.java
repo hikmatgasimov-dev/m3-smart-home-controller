@@ -3,6 +3,7 @@ import com.bootcamp.smarthome.exception.HomeAutomationException;
 import com.bootcamp.smarthome.device.Device;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.bootcamp.smarthome.exception.DeviceNotFoundException;
 /**
  * Central hub that manages all registered smart devices.
  *
@@ -77,8 +78,7 @@ public class HomeController {
             Device device = findDevice(deviceId);
 
             if (device == null) {
-                System.out.println("Device not found: " + deviceId);
-                return;
+                throw new DeviceNotFoundException(deviceId);
             }
 
             if (!device.isOnline()) {
