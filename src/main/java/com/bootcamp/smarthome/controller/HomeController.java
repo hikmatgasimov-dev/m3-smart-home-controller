@@ -1,7 +1,8 @@
 package com.bootcamp.smarthome.controller;
 import com.bootcamp.smarthome.exception.HomeAutomationException;
 import com.bootcamp.smarthome.device.Device;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Central hub that manages all registered smart devices.
  *
@@ -11,7 +12,7 @@ import com.bootcamp.smarthome.device.Device;
 public class HomeController {
 
     public static final int MAX_DEVICES = 8;
-
+    private  static final Logger logger=LoggerFactory.getLogger((HomeController.class));
     private final Device[] devices = new Device[MAX_DEVICES];
     private int deviceCount = 0;
 
@@ -86,6 +87,7 @@ public class HomeController {
             }
             device.executeCommand(command);
         } catch (HomeAutomationException e) {
+            logger.error("Command '{}' failed for device '{}': {}",fullCommand,deviceId,e.getMessage(),e);
             throw new HomeAutomationException("Command '" + fullCommand + "' failed for device '" + deviceId + "'", e);
         }
         finally {
