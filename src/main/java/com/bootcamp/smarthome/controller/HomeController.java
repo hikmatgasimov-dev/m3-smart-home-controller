@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 public class HomeController {
 
     public static final int MAX_DEVICES = 8;
-    private  static final Logger logger=LoggerFactory.getLogger((HomeController.class));
+    private  static final Logger logger=LoggerFactory.getLogger(HomeController.class);
     private final Device[] devices = new Device[MAX_DEVICES];
     private int deviceCount = 0;
 
@@ -71,7 +71,7 @@ public class HomeController {
      */
     public void sendCommand(String fullCommand) throws HomeAutomationException {
         String deviceId = CommandParser.extractDeviceId(fullCommand);
-
+        logger.debug("Command received:deviceId={},command='{}'",deviceId,fullCommand);
         try{
             String command  = CommandParser.extractCommand(fullCommand);
             Device device = findDevice(deviceId);
@@ -86,6 +86,7 @@ public class HomeController {
                 return;
             }
             device.executeCommand(command);
+            logger.info("Command executed successfully: deviceId={}, command='{}'", deviceId, fullCommand);
         } catch (HomeAutomationException e) {
             logger.error("Command '{}' failed for device '{}': {}",fullCommand,deviceId,e.getMessage(),e);
             throw new HomeAutomationException("Command '" + fullCommand + "' failed for device '" + deviceId + "'", e);
